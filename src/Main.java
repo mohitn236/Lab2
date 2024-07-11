@@ -8,6 +8,10 @@ public class Main {
     private static Map<String, Pet> pets = new HashMap<>();
     private static Map<String, Booking> bookings = new HashMap<>();
     private static ProfileManager profileManager = new ProfileManager();
+    private static Map<String, Invoice> invoices = new HashMap<>();
+    private static Map<String, Notification> notifications = new HashMap<>();
+    private static Map<String, Staff> staff = new HashMap<>();
+    
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -30,6 +34,15 @@ public class Main {
                     manageCareProfiles();
                     break;
                 case 5:
+                    manageInvoices();
+                    break;
+                case 6:
+                    manageNotifications();
+                    break;
+                case 7:
+                    manageStaff();
+                    break;
+                case 8:
                     exit = true;
                     break;
                 default:
@@ -44,7 +57,10 @@ public class Main {
         System.out.println("2. Manage Pets");
         System.out.println("3. Manage Bookings");
         System.out.println("4. Manage Care Profiles");
-        System.out.println("5. Exit");
+        System.out.println("5. Manage Invoices");
+        System.out.println("6. Manage Notifications");
+        System.out.println("7. Manage Staff");
+        System.out.println("8. Exit");
         System.out.print("Enter your choice: ");
     }
 
@@ -344,4 +360,242 @@ public class Main {
         String petId = scanner.nextLine();
         profileManager.viewCareProfile(petId);
     }
+    
+    private static void manageInvoices() {
+        System.out.println("1. Add Invoice");
+        System.out.println("2. Update Invoice");
+        System.out.println("3. Delete Invoice");
+        System.out.println("4. View Invoice");
+        System.out.print("Enter your choice: ");
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // consume newline
+
+        switch (choice) {
+            case 1:
+                addInvoice();
+                break;
+            case 2:
+                updateInvoice();
+                break;
+            case 3:
+                deleteInvoice();
+                break;
+            case 4:
+                viewInvoice();
+                break;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+        }
+    }
+
+    private static void addInvoice() {
+        System.out.print("Enter Invoice ID: ");
+        String id = scanner.nextLine();
+        System.out.print("Enter Client ID: ");
+        String clientId = scanner.nextLine();
+        System.out.print("Enter Amount: ");
+        double amount = scanner.nextDouble();
+        System.out.print("Enter Date (yyyy-mm-dd): ");
+        Date date = Date.valueOf(scanner.next());
+        invoices.put(id, new Invoice(id, clientId, amount, date));
+        System.out.println("Invoice added successfully.");
+    }
+
+    private static void updateInvoice() {
+        System.out.print("Enter Invoice ID: ");
+        String id = scanner.nextLine();
+        Invoice invoice = invoices.get(id);
+        if (invoice != null) {
+            System.out.print("Enter new Client ID: ");
+            invoice.setClientId(scanner.nextLine());
+            System.out.print("Enter new Amount: ");
+            invoice.setAmount(scanner.nextDouble());
+            System.out.print("Enter new Date (yyyy-mm-dd): ");
+            invoice.setDate(Date.valueOf(scanner.next()));
+            System.out.println("Invoice updated successfully.");
+        } else {
+            System.out.println("Invoice not found.");
+        }
+    }
+
+    private static void deleteInvoice() {
+        System.out.print("Enter Invoice ID: ");
+        String id = scanner.nextLine();
+        if (invoices.remove(id) != null) {
+            System.out.println("Invoice deleted successfully.");
+        } else {
+            System.out.println("Invoice not found.");
+        }
+    }
+
+    private static void viewInvoice() {
+        System.out.print("Enter Invoice ID: ");
+        String id = scanner.nextLine();
+        Invoice invoice = invoices.get(id);
+        if (invoice != null) {
+            System.out.println(invoice);
+        } else {
+            System.out.println("Invoice not found.");
+        }
+    }
+    
+    private static void manageNotifications() {
+        System.out.println("1. Add Notification");
+        System.out.println("2. Update Notification");
+        System.out.println("3. Delete Notification");
+        System.out.println("4. View Notification");
+        System.out.print("Enter your choice: ");
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // consume newline
+
+        switch (choice) {
+            case 1:
+                addNotification();
+                break;
+            case 2:
+                updateNotification();
+                break;
+            case 3:
+                deleteNotification();
+                break;
+            case 4:
+                viewNotification();
+                break;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+        }
+    }
+
+    private static void addNotification() {
+        System.out.print("Enter Notification ID: ");
+        String id = scanner.nextLine();
+        System.out.print("Enter Client ID: ");
+        String clientId = scanner.nextLine();
+        System.out.print("Enter Message: ");
+        String message = scanner.nextLine();
+        System.out.print("Enter Date (yyyy-mm-dd): ");
+        Date date = Date.valueOf(scanner.next());
+        notifications.put(id, new Notification(id, clientId, message, date));
+        System.out.println("Notification added successfully.");
+    }
+
+    private static void updateNotification() {
+        System.out.print("Enter Notification ID: ");
+        String id = scanner.nextLine();
+        Notification notification = notifications.get(id);
+        if (notification != null) {
+            System.out.print("Enter new Client ID: ");
+            notification.setClientId(scanner.nextLine());
+            System.out.print("Enter new Message: ");
+            notification.setMessage(scanner.nextLine());
+            System.out.print("Enter new Date (yyyy-mm-dd): ");
+            notification.setDate(Date.valueOf(scanner.next()));
+            System.out.println("Notification updated successfully.");
+        } else {
+            System.out.println("Notification not found.");
+        }
+    }
+
+    private static void deleteNotification() {
+        System.out.print("Enter Notification ID: ");
+        String id = scanner.nextLine();
+        if (notifications.remove(id) != null) {
+            System.out.println("Notification deleted successfully.");
+        } else {
+            System.out.println("Notification not found.");
+        }
+    }
+
+    private static void viewNotification() {
+        System.out.print("Enter Notification ID: ");
+        String id = scanner.nextLine();
+        Notification notification = notifications.get(id);
+        if (notification != null) {
+            System.out.println(notification);
+        } else {
+            System.out.println("Notification not found.");
+        }
+    }
+    
+    private static void manageStaff() {
+        System.out.println("1. Add Staff");
+        System.out.println("2. Update Staff");
+        System.out.println("3. Delete Staff");
+        System.out.println("4. View Staff");
+        System.out.print("Enter your choice: ");
+        int choice = scanner.nextInt();
+        scanner.nextLine(); // consume newline
+
+        switch (choice) {
+            case 1:
+                addStaff();
+                break;
+            case 2:
+                updateStaff();
+                break;
+            case 3:
+                deleteStaff();
+                break;
+            case 4:
+                viewStaff();
+                break;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+        }
+    }
+    private static void addStaff() {
+        System.out.print("Enter Staff ID: ");
+        String id = scanner.nextLine();
+        System.out.print("Enter Staff Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter Position: ");
+        String position = scanner.nextLine();
+        System.out.print("Enter Salary: ");
+        double salary = scanner.nextDouble();
+        scanner.nextLine(); // consume the newline character
+        staff.put(id, new Staff(id, name, position, salary));
+        System.out.println("Staff added successfully.");
+    }
+
+    private static void updateStaff() {
+        System.out.print("Enter Staff ID: ");
+        String id = scanner.nextLine();
+        Staff s = staff.get(id);
+        if (s != null) {
+            System.out.print("Enter new Staff Name: ");
+            s.setName(scanner.nextLine());
+            System.out.print("Enter new Position: ");
+            s.setPosition(scanner.nextLine());
+            System.out.print("Enter new Salary: ");
+            s.setSalary(scanner.nextDouble());
+            scanner.nextLine(); // consume the newline character
+            System.out.println("Staff updated successfully.");
+        } else {
+            System.out.println("Staff not found.");
+        }
+    }
+
+    private static void deleteStaff() {
+        System.out.print("Enter Staff ID: ");
+        String id = scanner.nextLine();
+        if (staff.remove(id) != null) {
+            System.out.println("Staff deleted successfully.");
+        } else {
+            System.out.println("Staff not found.");
+        }
+    }
+
+    private static void viewStaff() {
+        System.out.print("Enter Staff ID: ");
+        String id = scanner.nextLine();
+        Staff s = staff.get(id);
+        if (s != null) {
+            System.out.println(s);
+        } else {
+            System.out.println("Staff not found.");
+        }
+    }
 }
+
+    
+
