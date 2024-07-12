@@ -10,7 +10,7 @@ This Java-based system manages clients, pets, bookings, care profiles, invoices,
 
 2. **Clone the Repository**: Clone this repository to your local machine:
     ```sh
-    git clone https://github.com/yourusername/pet-boarding-facility.git
+    git clone https://github.com/mohitn236/pet-boarding-facility.git
     ```
 
 3. **Navigate to the Project Directory**: Open your terminal or command prompt and navigate to the project directory:
@@ -40,7 +40,8 @@ After running the application, you will see a menu with options. Enter the numbe
 4. **Manage Care Profiles**: Add, update, or view care profiles.
 5. **Manage Invoices**: Add, update, delete, or view invoices.
 6. **Manage Notifications**: Add, update, delete, or view notifications.
-7. **Exit**: Exit the application.
+7. **Staff**: Manages staff details.
+8. **Exit**: Exit the application.
 
 ### Detailed Actions
 
@@ -48,4 +49,4 @@ After running the application, you will see a menu with options. Enter the numbe
 
 ## Contact
 
-For any questions or issues, please open an issue on the [GitHub repository](https://github.com/yourusername/pet-boarding-facility) or contact me at [your-email@example.com].
+For any questions or issues, please open an issue on the [GitHub repository](https://github.com/yourusername/pet-boarding-facility) or contact us at [mohit.narula@ucalgary.ca] and [shivansh.sharma@ucalgary.ca].
